@@ -4595,7 +4595,7 @@ msgstr "ocultar vista previa"
 #: skins/common/templates/widgets/related_tags.html:3
 #: skins/default/templates/tags.html:4
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: skins/common/templates/widgets/tag_selector.html:4
 msgid "Interesting tags"
@@ -4729,7 +4729,6 @@ msgstr "mostrar vista previa"
 #: skins/default/templates/ask.html:4
 #: skins/default/templates/widgets/ask_button.html:5
 #: skins/default/templates/widgets/ask_form.html:43
-#, fuzzy
 msgid "Ask Your Question"
 msgstr "Formula tu pregunta"
 
