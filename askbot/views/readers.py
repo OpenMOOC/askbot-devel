@@ -19,7 +19,7 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import ungettext
 from django.utils import translation
 from django.views.decorators import csrf
-from django.conf import django_settings
+from django.conf import settings as django_settings
 from django.core.urlresolvers import reverse
 from django.core import exceptions as django_exceptions
 from django.contrib.humanize.templatetags import humanize
@@ -127,8 +127,9 @@ def questions(request, **kwargs):
         # QueryDict but as a list - we want tags+
         rss_query_dict.setlist("tags", search_state.tags)
     #context_feed_url = '/feeds/rss/?%s' % rss_query_dict.urlencode() # Format the url with the QueryDict
-    context_feed_url = '%sfeeds/rss/?%s' % (django_settings.FULL_ASKBOT_URL,
-                                            rss_query_dict.urlencode())
+
+    context_feed_url = ('%sfeeds/rss/?%s' % (rss_query_dict.urlencode(),
+                                             django_settings.FULL_ASKBOT_URL))
 
     reset_method_count = len(filter(None, [search_state.query, search_state.tags, meta_data.get('author_name', None)]))
 
