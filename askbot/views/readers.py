@@ -128,7 +128,7 @@ def questions(request, **kwargs):
         rss_query_dict.setlist("tags", search_state.tags)
     #context_feed_url = '/feeds/rss/?%s' % rss_query_dict.urlencode() # Format the url with the QueryDict
     context_feed_url = '%sfeeds/rss/?%s' % (django_settings.FULL_ASKBOT_URL,
-             +                              rss_query_dict.urlencode())
+                                            rss_query_dict.urlencode())
 
     reset_method_count = len(filter(None, [search_state.query, search_state.tags, meta_data.get('author_name', None)]))
 
