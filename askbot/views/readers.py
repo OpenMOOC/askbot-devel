@@ -126,10 +126,10 @@ def questions(request, **kwargs):
         # We have tags in session - pass it to the
         # QueryDict but as a list - we want tags+
         rss_query_dict.setlist("tags", search_state.tags)
-    #context_feed_url = '/feeds/rss/?%s' % rss_query_dict.urlencode() # Format the url with the QueryDict
 
-    context_feed_url = ('%sfeeds/rss/?%s' % (rss_query_dict.urlencode(),
-                                             django_settings.FULL_ASKBOT_URL))
+    base_feed_url = reverse('feeds', kwargs={'url':'rss'})
+    context_feed_url = ('%s?%s' % (base_feed_url,
+                                   rss_query_dict.urlencode()))
 
     reset_method_count = len(filter(None, [search_state.query, search_state.tags, meta_data.get('author_name', None)]))
 
