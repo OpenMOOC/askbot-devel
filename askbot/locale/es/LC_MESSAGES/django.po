@@ -135,7 +135,7 @@ msgstr[1] "cada tag debe ser de menos de %(max_chars)d caracteres"
 
 #: forms.py:321
 msgid "In tags, please use letters, numbers and characters \"-+.#\""
-msgstr ""
+msgstr "Por favor, en las etiquetas use letras, números o caracteres \"-+.#\""
 
 #: forms.py:357
 msgid "community wiki (karma is not awarded & many others can edit wiki post)"
@@ -375,9 +375,8 @@ msgid "Title"
 msgstr "Titulo"
 
 #: forms.py:1234
-#, fuzzy
 msgid "Description"
-msgstr "%(description)s"
+msgstr "Descripción"
 
 #: lamson_handlers.py:172
 msgid ""
@@ -473,7 +472,7 @@ msgstr "suscripciones/"
 
 #: urls.py:279
 msgid "groups/"
-msgstr ""
+msgstr "grupos/"
 
 #: urls.py:284
 msgid "users/update_has_custom_avatar/"
@@ -634,7 +633,6 @@ msgstr ""
 "defecto."
 
 #: conf/email.py:38
-#, fuzzy
 msgid "Enable email alerts"
 msgstr "Configuración de alertas y email"
 
@@ -1004,14 +1002,13 @@ msgstr "Entrada de datos y reglas de diseño"
 
 #: conf/forum_data_rules.py:21
 msgid "Enable embedding videos. "
-msgstr ""
+msgstr "Activar videos incrustados. "
 
 #: conf/forum_data_rules.py:23
 #, fuzzy, python-format
 msgid "<em>Note: please read <a href=\"%(url)s\">read this</a> first.</em>"
 msgstr ""
-"Activar embeber videos. <em>Nota: por favor <a href=\"%(url)s>lee esto</a> "
-"antes.</em>"
+"<em>Nota: Por favo, lee <a href=\"%(url)s\">read this</a> antes.</em>"
 
 #: conf/forum_data_rules.py:33
 msgid "Check to enable community wiki feature"
@@ -1075,9 +1072,8 @@ msgid "Minimum length of answer body (number of characters)"
 msgstr "Tamaño minimo de la respuesta (numero de caracteres)"
 
 #: conf/forum_data_rules.py:126
-#, fuzzy
 msgid "Are tags required?"
-msgstr "etiquetas requeridas"
+msgstr "Etiquetas requeridas?"
 
 #: conf/forum_data_rules.py:135
 msgid "Mandatory tags"
@@ -1242,7 +1238,7 @@ msgstr ""
 
 #: conf/karma_and_badges_visibility.py:44
 msgid "Visibility of badges"
-msgstr ""
+msgstr "Visibilidad y premios"
 
 #: conf/karma_and_badges_visibility.py:47
 msgid "Badges can be either publicly shown or completely hidden"
@@ -1594,17 +1590,16 @@ msgid "Post answers and comments by email"
 msgstr ""
 
 #: conf/moderation.py:11
-#, fuzzy
 msgid "Content moderation"
-msgstr "moderacion"
+msgstr "Moderación de contenido"
 
 #: conf/moderation.py:20
 msgid "Enable content moderation"
-msgstr ""
+msgstr "Activar moderación de contenido"
 
 #: conf/reputation_changes.py:13
 msgid "Karma loss and gain rules"
-msgstr "Puntos de Karma"
+msgstr "Reglas para la pérdida y obtención de karma"
 
 #: conf/reputation_changes.py:23
 msgid "Maximum daily reputation gain per user"
@@ -1972,11 +1967,11 @@ msgstr ""
 
 #: conf/skin_general_settings.py:34
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: conf/skin_general_settings.py:35
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: conf/skin_general_settings.py:36
 msgid "Catalan"
@@ -2083,7 +2078,7 @@ msgstr ""
 
 #: conf/skin_general_settings.py:105
 msgid "Password login button"
-msgstr "Boton de Password "
+msgstr "Botón de login "
 
 #: conf/skin_general_settings.py:107
 msgid ""
@@ -2610,7 +2605,6 @@ msgid "edited answer"
 msgstr "respuesta editada"
 
 #: const/__init__.py:143
-#, fuzzy
 msgid "received badge"
 msgstr "recibió un trofeo"
 
@@ -2671,19 +2665,16 @@ msgid "mentioned in the post"
 msgstr "mencionado en el post"
 
 #: const/__init__.py:166
-#, fuzzy
 msgid "created tag description"
-msgstr "descripción de la medalla de bronce"
+msgstr "Creada descripción de etiqueta"
 
 #: const/__init__.py:170
-#, fuzzy
 msgid "updated tag description"
-msgstr "descripción de la medalla de oro"
+msgstr "Actualizada descripción de etiqueta"
 
 #: const/__init__.py:172
-#, fuzzy
 msgid "made a new post"
-msgstr "marcar como nuevo"
+msgstr "crear un nuevo contenido"
 
 #: const/__init__.py:175
 #, fuzzy
@@ -2699,12 +2690,10 @@ msgid "updated post reject reason"
 msgstr ""
 
 #: const/__init__.py:235
-#, fuzzy
 msgid "answered question"
 msgstr "contestó una pregunta"
 
 #: const/__init__.py:238
-#, fuzzy
 msgid "accepted answer"
 msgstr "respuesta editada"
 
@@ -2725,17 +2714,14 @@ msgid "retagged"
 msgstr "re-etiquetado"
 
 #: const/__init__.py:253
-#, fuzzy
 msgid "show all tags"
 msgstr "ver todas las etiquetas"
 
 #: const/__init__.py:254 const/__init__.py:259
-#, fuzzy
 msgid "exclude ignored tags"
-msgstr "excluir las ignoradas"
+msgstr "excluir las etiquetas ignoradas"
 
 #: const/__init__.py:255
-#, fuzzy
 msgid "only interesting tags"
 msgstr "Etiquetas de interes"
 
@@ -2745,9 +2731,8 @@ msgid "email for all tags"
 msgstr "ver todas las etiquetas"
 
 #: const/__init__.py:260
-#, fuzzy
 msgid "only subscribed tags"
-msgstr "Suscribir a etiquetas"
+msgstr "solo etiquetas suscritas"
 
 #: const/__init__.py:264
 msgid "instantly"
@@ -3350,9 +3335,8 @@ msgstr ""
 "pueden aceptar o cancelar la mejor respuesta"
 
 #: models/__init__.py:413
-#, fuzzy
 msgid "Sorry, you cannot vote for your own posts"
-msgstr "no se puede votar por sus propias publicaciones"
+msgstr "no se puede votar sus propias publicaciones"
 
 #: models/__init__.py:417
 msgid "Sorry your account appears to be blocked "
@@ -3961,7 +3945,7 @@ msgstr "La primera respuesta fué aceptada con %(num)s o más votos"
 
 #: models/badges.py:507
 msgid "Guru"
-msgstr "Guru"
+msgstr "Gurú"
 
 #: models/badges.py:510
 #, python-format
@@ -3978,7 +3962,7 @@ msgstr ""
 
 #: models/badges.py:525
 msgid "Necromancer"
-msgstr "Nigromante"
+msgstr "Necromante"
 
 #: models/badges.py:548
 msgid "Citizen Patrol"
@@ -5019,7 +5003,7 @@ msgid "Community gives you awards for your questions, answers and votes."
 msgstr "La comunidad le da premios a sus preguntas, respuestas y votos."
 
 #: skins/default/templates/badges.html:8
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Below is the list of available badges and number \n"
 "    of times each type of badge has been awarded. Have ideas about fun \n"
@@ -5042,7 +5026,9 @@ msgid ""
 "Gold badge is the highest award in this community. To obtain it you have to "
 "show \n"
 "profound knowledge and ability in addition to your active participation."
-msgstr ""
+msgstr "La medalla de oro es el mayor premio en esta comunidad. Para obtenerlo "
+"debes mostar un profundo concoimiento y la habilidad de incrementar tu "
+"participación activa"
 
 #: skins/default/templates/badges.html:47
 #: skins/default/templates/badges.html:51
