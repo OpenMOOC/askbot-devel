@@ -14,7 +14,7 @@ GRAVATAR_TEMPLATE = (
                      '<a style="text-decoration:none" '
                      'href="%(user_profile_url)s"><img class="gravatar" '
                      'width="%(size)s" height="%(size)s" '
-                     'src="http://www.gravatar.com/avatar/%(gravatar_hash)s'
+                     'src="//www.gravatar.com/avatar/%(gravatar_hash)s'
                      '?s=%(size)s&amp;d=%(gravatar_type)s&amp;r=PG" '
                      'title="%(username)s" '
                      'alt="%(alt_text)s" /></a>')
@@ -43,7 +43,7 @@ def gravatar(user, size):
         'alt_text': _('%(username)s gravatar image') % {'username': user.username},
         'username': functions.get_from_dict_or_object(user, 'username'),
     })
-    
+
 @register.simple_tag
 def get_tag_font_size(tags):
     max_tag = 0
@@ -59,7 +59,7 @@ def get_tag_font_size(tags):
     font_size = {}
     for tag in tags:
         font_size[tag.name] = tag_font_size(max_tag,min_tag,tag.used_count)
-    
+
     return font_size
 
 @register.simple_tag
@@ -74,12 +74,12 @@ def tag_font_size(max_size, min_size, current_size):
 
     #avoid invalid calculation
     if current_size == 0:
-        current_size = 1    
+        current_size = 1
     try:
         weight = (math.log10(current_size) - math.log10(min_size)) / (math.log10(max_size) - math.log10(min_size))
     except Exception:
         weight = 0
-        
+
     return int(MIN_FONTSIZE + round((MAX_FONTSIZE - MIN_FONTSIZE) * weight))
 
 
