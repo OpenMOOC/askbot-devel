@@ -119,7 +119,7 @@ User.add_to_class('new_response_count', models.IntegerField(default=0))
 User.add_to_class('seen_response_count', models.IntegerField(default=0))
 User.add_to_class('consecutive_days_visit_count', models.IntegerField(default = 0))
 
-GRAVATAR_TEMPLATE = "http://www.gravatar.com/avatar/%(gravatar)s?" + \
+GRAVATAR_TEMPLATE = "//www.gravatar.com/avatar/%(gravatar)s?" + \
     "s=%(size)d&amp;d=%(type)s&amp;r=PG"
 
 def user_get_gravatar_url(self, size):
@@ -266,7 +266,7 @@ def user_can_have_strong_url(self):
     return (self.reputation >= askbot_settings.MIN_REP_TO_HAVE_STRONG_URL)
 
 def user_can_reply_by_email(self):
-    """True, if reply by email is enabled 
+    """True, if reply by email is enabled
     and user has sufficient reputatiton"""
     return askbot_settings.REPLY_BY_EMAIL and \
         self.reputation > askbot_settings.MIN_REP_TO_POST_BY_EMAIL
@@ -2156,7 +2156,7 @@ def _process_vote(user, post, timestamp=None, cancel=False, vote_type=None):
             auth.onDownVotedCanceled(vote, post, user, timestamp)
         else:
             auth.onDownVoted(vote, post, user, timestamp)
-            
+
     post.thread.invalidate_cached_data()
 
     if post.post_type == 'question':
@@ -2242,12 +2242,12 @@ def flag_post(user, post, timestamp=None, cancel=False, cancel_all = False, forc
                         content_type = post_content_type, object_id=post.id
                     )
         for flag in all_flags:
-            auth.onUnFlaggedItem(post, flag.user, timestamp=timestamp)            
+            auth.onUnFlaggedItem(post, flag.user, timestamp=timestamp)
 
     elif cancel:#todo: can't unflag?
         if force == False:
             user.assert_can_remove_flag_offensive(post = post)
-        auth.onUnFlaggedItem(post, user, timestamp=timestamp)        
+        auth.onUnFlaggedItem(post, user, timestamp=timestamp)
 
     else:
         if force == False:
@@ -2581,17 +2581,17 @@ def format_instant_notification_email(
         if update_type.endswith('update'):
             user_action = _('%(user)s edited a %(post_link)s.')
         else:
-            user_action = _('%(user)s posted a %(post_link)s') 
+            user_action = _('%(user)s posted a %(post_link)s')
     elif post.is_answer():
         if update_type.endswith('update'):
             user_action = _('%(user)s edited an %(post_link)s.')
         else:
-            user_action = _('%(user)s posted an %(post_link)s.') 
+            user_action = _('%(user)s posted an %(post_link)s.')
     elif post.is_question():
         if update_type.endswith('update'):
             user_action = _('%(user)s edited a %(post_link)s.')
         else:
-            user_action = _('%(user)s posted a %(post_link)s.') 
+            user_action = _('%(user)s posted a %(post_link)s.')
     else:
         raise ValueError('unrecognized post type')
 
@@ -2611,7 +2611,7 @@ def format_instant_notification_email(
                     }
     else:
         reply_separator = user_action
-                    
+
     update_data = {
         'update_author_name': from_user.username,
         'receiving_user_name': to_user.username,
@@ -2656,7 +2656,7 @@ def send_instant_notifications_about_activity_in_post(
 
     origin_post = post.get_origin_post()
     for user in recipients:
-      
+
         subject_line, body_text = format_instant_notification_email(
                             to_user = user,
                             from_user = update_activity.user,
@@ -2664,7 +2664,7 @@ def send_instant_notifications_about_activity_in_post(
                             update_type = update_type,
                             template = get_template('instant_notification.html')
                         )
-      
+
         #todo: this could be packaged as an "action" - a bundle
         #of executive function with the activity log recording
         #TODO check user reputation
@@ -3018,7 +3018,7 @@ def update_user_avatar_type_flag(instance, **kwargs):
 def make_admin_if_first_user(instance, **kwargs):
     """first user automatically becomes an administrator
     the function is run only once in the interpreter session
-    """    
+    """
     import sys
     #have to check sys.argv to satisfy the test runner
     #which fails with the cache-based skipping
