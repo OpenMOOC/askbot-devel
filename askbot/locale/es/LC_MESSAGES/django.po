@@ -317,7 +317,7 @@ msgstr "Fecha de nacimiento"
 
 #: forms.py:984
 msgid "will not be shown, used to calculate age, format: YYYY-MM-DD"
-msgstr "no será mostrada, se usa para calcular la edad, formato: Año-Mes-Dia"
+msgstr "no será mostrada, se usa para calcular la edad, formato: DD/MM/AAAAA"
 
 #: forms.py:990
 msgid "Profile"
@@ -4834,7 +4834,6 @@ msgid "Ignored tags"
 msgstr "Ignorar etiqueta"
 
 #: skins/common/templates/widgets/tag_selector.html:39
-#, fuzzy
 msgid "Subscribed tags"
 msgstr "Suscribir a etiquetas"
 
@@ -5671,7 +5670,6 @@ msgstr "Editar pregunta"
 
 #: skins/default/templates/question_retag.html:3
 #: skins/default/templates/question_retag.html:5
-#, fuzzy
 msgid "Retag question"
 msgstr "Preguntas relacionadas"
 
@@ -6360,7 +6358,6 @@ msgid "dismiss"
 msgstr "cancelar"
 
 #: skins/default/templates/user_profile/user_inbox.html:62
-#, fuzzy
 msgid "remove flags/approve"
 msgstr "eliminar denuncias"
 
@@ -6381,7 +6378,6 @@ msgid "real name"
 msgstr "nombre real"
 
 #: skins/default/templates/user_profile/user_info.html:60
-#, fuzzy
 msgid "member since"
 msgstr "miembro desde"
 
@@ -6390,7 +6386,6 @@ msgid "last seen"
 msgstr "últimas visita"
 
 #: skins/default/templates/user_profile/user_info.html:71
-#, fuzzy
 msgid "website"
 msgstr "Sitio Web"
 
