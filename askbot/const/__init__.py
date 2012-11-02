@@ -4,7 +4,7 @@ All constants could be used in other modules
 For reasons that models, views can't have unicode
 text in this project, all unicode text go here.
 """
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 import re
 CLOSE_REASONS = (
     (1, _('duplicate question')),
@@ -298,7 +298,7 @@ DEFAULT_USER_STATUS = 'w'
 #number of items to show in user views
 USER_VIEW_DATA_SIZE = 50
 
-#not really dependency, but external links, which it would 
+#not really dependency, but external links, which it would
 #be nice to test for correctness from time to time
 DEPENDENCY_URLS = {
     'akismet': 'https://akismet.com/signup/',
