@@ -2740,7 +2740,7 @@ msgstr "en el momento"
 
 #: const/__init__.py:265
 msgid "daily"
-msgstr "diario"
+msgstr "a diario"
 
 #: const/__init__.py:266
 msgid "weekly"
@@ -5077,20 +5077,18 @@ msgid ""
 "Most importanly - questions should be <strong>relevant</strong> to this "
 "community."
 msgstr ""
-"Los más importante - las preguntas debe de ser <strong>relevantes</strong> "
+"Los más importante, las preguntas deben de ser <strong>relevantes</strong> "
 "para esta comunidad."
 
 #: skins/default/templates/faq_static.html:8
-#, fuzzy
 msgid ""
 "Before you ask - please make sure to search for a similar question. You can "
 "search questions by their title or tags."
 msgstr ""
-"Antes de hacer una pregunta - asegurate de haber buscado sobre ella, quizas "
+"Antes de hacer una pregunta, asegurate de haber buscado sobre ella, quizás "
 "ya encuentres una respuesta concreta."
 
 #: skins/default/templates/faq_static.html:10
-#, fuzzy
 msgid "What kinds of questions should be avoided?"
 msgstr "¿Qué preguntas debo evitar hacer?"
 
@@ -5099,7 +5097,7 @@ msgid ""
 "Please avoid asking questions that are not relevant to this community, too "
 "subjective and argumentative."
 msgstr ""
-"Por favor, evite hacer preguntas que no son relevantes para esta comunidad, "
+"Por favor, evita hacer preguntas que no son relevantes para esta comunidad, "
 "demasiado subjetivas y argumentativas."
 
 #: skins/default/templates/faq_static.html:13
@@ -5113,6 +5111,11 @@ msgid ""
 "they tend to dilute the essense of questions and answers. For the brief "
 "discussions please use commenting facility."
 msgstr ""
+"Es una <strong>herramienta de preguntas y respuestas.</strong>. <strong>No es "
+"un grupo de discussión</strong>. Por favor, evita manter debates en tus "
+"resupuestas porque tienden a diluir la esencia de la pregunta y respuestas. "
+"Para una breve discussión, por favor, usa la opción de comentar la pregunta "
+"o la respuesta, no la opción de respuesta"
 
 #: skins/default/templates/faq_static.html:15
 msgid "Who moderates this community?"
@@ -5120,14 +5123,13 @@ msgstr "Quien modera esta comunidad?"
 
 #: skins/default/templates/faq_static.html:16
 msgid "The short answer is: <strong>you</strong>."
-msgstr "La respuesta corta es: <strong>tu</ strong>."
+msgstr "La respuesta corta es: <strong>tú</ strong>."
 
 #: skins/default/templates/faq_static.html:17
 msgid "This website is moderated by the users."
 msgstr "Este sitio es moderado por los usuarios."
 
 #: skins/default/templates/faq_static.html:18
-#, fuzzy
 msgid ""
 "Karma system allows users to earn rights to perform a variety of moderation "
 "tasks"
@@ -5136,7 +5138,6 @@ msgstr ""
 "autorización para realizar una variedad de tareas de moderación."
 
 #: skins/default/templates/faq_static.html:20
-#, fuzzy
 msgid "How does karma system work?"
 msgstr "Cómo funciona este sistema de reputación?"
 
@@ -5147,6 +5148,11 @@ msgid ""
 "rough measure of the community trust to him/her. Various moderation tasks "
 "are gradually assigned to the users based on those points."
 msgstr ""
+"Cuando una pregunta o respuesta is valorada, el usuario quien la publicó "
+"ganará algunos puntos, los cuales son llamados \\\"Puntos de Karma\\\". "
+"Estos puntos ofrecen a la comunidad una medida sobre la fiabilidad del "
+"usuario. En función de estos puntos, se le asignarán al usuario diversos "
+"permisos de moderación"
 
 #: skins/default/templates/faq_static.html:22
 #, python-format
@@ -5161,14 +5167,14 @@ msgid ""
 "explains reputation point requirements for each type of moderation task."
 msgstr ""
 "Si haces una pregunta interesante o envias una respuesta que sea de ayuda, "
-"te valoraran positivamente. Pero si la respuesta es confusa podran valorarte "
+"te valorarán positivamente. Pero si la respuesta es confusa podrán valorarte "
 "negativamente. Cada voto positivo generara <strong>%"
 "(REP_GAIN_FOR_RECEIVING_UPVOTE)s</strong> puntos , cada voto negativo te "
-"restara <strong>%(REP_LOSS_FOR_RECEIVING_DOWNVOTE)s</strong> puntos. "
-"Dispones de un limite de <strong>%(MAX_REP_GAIN_PER_USER_PER_DAY)s</strong> "
-"puntos que puedes ganar cada dia con cada pregunta. La tabla de abajo te "
-"muestra como funcionan los puntos de reputacion para cada tipo de tarea de "
-"moderacion."
+"restará <strong>%(REP_LOSS_FOR_RECEIVING_DOWNVOTE)s</strong> puntos. "
+"Dispones de un límite de <strong>%(MAX_REP_GAIN_PER_USER_PER_DAY)s</strong> "
+"puntos que puedes ganar cada día con cada pregunta. La siguiente tabla te "
+"muestra como funcionan los puntos de reputación para cada tipo de tarea de "
+"moderación."
 
 #: skins/default/templates/faq_static.html:32
 #: skins/default/templates/user_profile/user_votes.html:14
@@ -5210,7 +5216,7 @@ msgstr "eliminar cualquier comentario"
 
 #: skins/default/templates/faq_static.html:69
 msgid "How to change my picture (gravatar) and what is gravatar?"
-msgstr ""
+msgstr "¿Cómo cambiar mi foto (avatar) y qué es gravatar?"
 
 #: skins/default/templates/faq_static.html:70
 msgid ""
@@ -5228,6 +5234,22 @@ msgid ""
 "be sure to use the same email address that you used to register with us). "
 "Default image that looks like a kitchen tile is generated automatically.</p>"
 msgstr ""
+"<p>La foto que aparece en el perfil de usuario se llama <strong>avatar"
+"</strong> y es ofrecida por el servicio <a href='http://gravatar.com'>"
+"Gravatar.com</a>, que significa <strong>G<strong>lobally <strong>R</strong>"
+"ecognized <strong>Avatar</strong> (Avatar globalmente reconocido).</p>"
+"<p>Así es como funciona: Se calcula una clave criptográfica (código "
+"irrompible) a través tu dirección de correo electrónico (email). Subes tu "
+"foto (o una imagen de tu personaje favorito) a la web "
+"<a href='http://gravatar.com'>Gravatar.com</a>, desde donde nosotros, "
+"posteriormente descargaremos tu imagen usando la clave criptográfica basada "
+"en tu email. Así, de este modo, los sitios web donde se muestra tu imagen al "
+"lado de mensaje y tu dirección de correo permanecerá privada.</p> Por favor, "
+"<strong>personaliza tu cuenta</strong> con una imagen. Regístrate en <a href="
+"'http://gravatar.com'>gravatar.com</a>, asegúrate que usas el mismo email con "
+"el que usaste en nuestro registro. Sino encontramos tu imagen en gravatar.com "
+"aparecerá en tu perfil una imagen que parecida a un azulejo de cocina "
+"generado automáticamente"
 
 #: skins/default/templates/faq_static.html:71
 msgid "To register, do I need to create new password?"
@@ -5238,8 +5260,8 @@ msgid ""
 "No, you don't have to. You can login through any service that supports "
 "OpenID, e.g. Google, Yahoo, AOL, etc.\""
 msgstr ""
-"No es necesario hacer esto. Puedes hacer login desde cualquier servicio que "
-"soporte OpenID, por ejemplo Google, Yahoo, AOL, etc"
+"Necesitarás la misma contraseña que usas para acceder a la herramienta de "
+"cursos"
 
 #: skins/default/templates/faq_static.html:73
 msgid "\"Login now!\""
@@ -5251,7 +5273,7 @@ msgstr "Por que otras personas puede editar mis preguntas/respuestas?"
 
 #: skins/default/templates/faq_static.html:76
 msgid "Goal of this site is..."
-msgstr "Objetivo de este sitio es ..."
+msgstr "El objetivo de este sitio es la colaboración."
 
 #: skins/default/templates/faq_static.html:76
 msgid ""
@@ -5259,13 +5281,13 @@ msgid ""
 "of this site and this improves the overall quality of the knowledge base "
 "content."
 msgstr ""
-"Entonces, la presguntas y respuestas pueden ser editas comos los sitios wiki "
+"Entonces, la presguntas y respuestas pueden ser editadas comos los sitios wiki "
 "(como Wikipedia) por usuarios con experiencia en ese sitio, y todo con el "
 "objetivo de aumentar la calidad del contenido."
 
 #: skins/default/templates/faq_static.html:77
 msgid "If this approach is not for you, we respect your choice."
-msgstr "Si este enfoque no es para usted, nosotros respetaremos su opción."
+msgstr "Si este enfoque no es valido para ti, nosotros respetaremos tu opción."
 
 #: skins/default/templates/faq_static.html:79
 msgid "Still have questions?"
@@ -5337,7 +5359,6 @@ msgid "Send Feedback"
 msgstr "Enviar sugerencias"
 
 #: skins/default/templates/groups.html:3 skins/default/templates/groups.html:5
-#, fuzzy
 msgid "Groups"
 msgstr "Guru"
 
@@ -5370,8 +5391,7 @@ msgid ""
 "This site is for asking and answering questions, not for open-ended "
 "discussions."
 msgstr ""
-"Este sitio es para preguntar y contestar pregunras, no para debates o "
-"discusiones."
+"Este sitio es para preguntar y contestar preguntas, no generar discusiones."
 
 #: skins/default/templates/help.html:17
 msgid ""
@@ -5386,8 +5406,8 @@ msgid ""
 "Despite that, each question and answer can be commented – \n"
 "    the comments are good for the limited discussions."
 msgstr ""
-"A pesar de esto, puedes comentar cada pregunta y cada respuesta – \n"
-"    aunque no se recomienda utilizar los comentarios para iniciar debates "
+"A pesar de esto, puedes comentar cada pregunta y cada respuesta, \n"
+"aunque no se recomienda utilizar los comentarios para iniciar debates "
 "demasiado extensos, solo para discusiones cortas."
 
 #: skins/default/templates/help.html:24
@@ -5396,7 +5416,7 @@ msgid ""
 "Voting in %(app_name)s helps to select best answers and thank most helpful "
 "users."
 msgstr ""
-"Votar en %(app_name)s ayuda a seleccionar las mejores respuestas y agradecer "
+"Votar en %(app_name)s nos ayuda a seleccionar las mejores respuestas y agradecer "
 "la colaboracion de nuestros mejores usuarios."
 
 #: skins/default/templates/help.html:26
@@ -5405,8 +5425,8 @@ msgid ""
 "Please vote when you find helpful information,\n"
 "    it really helps the %(app_name)s community."
 msgstr ""
-"Por favor, vota cuando encuentres informacion de interes,\n"
-"    asi ayudaras a la comunidad de %(app_name)s."
+"Por favor, vota cuando encuentres información de interés,\n"
+" asé ayudarás a la comunidad de %(app_name)s."
 
 #: skins/default/templates/help.html:29
 msgid ""
