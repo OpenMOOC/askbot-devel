@@ -711,7 +711,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {%- macro timeago(datetime_object) -%}
-    <abbr class="timeago" title="{{datetime_object|diff_data}}">
+    <abbr class="timeago" title="{{datetime_object|diff_date}}">
         {{datetime_object|diff_date}}
     </abbr>
 {%- endmacro -%}
