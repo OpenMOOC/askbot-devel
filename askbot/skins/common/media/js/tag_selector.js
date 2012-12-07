@@ -97,7 +97,7 @@ TagDetailBox.prototype.renderFor = function(wildcard){
 }
 
 function pickedTags(){
-    
+
     var interestingTags = {};
     var ignoredTags = {};
     var subscribedTags = {};
@@ -224,13 +224,34 @@ function pickedTags(){
                     unpickTag(to_target, tag_name, reason, true);
                 }
             }
-            
+
             tag.setDeleteHandler(delete_handler);
             var tag_element = tag.getElement();
             to_tag_container.append(tag_element);
             to_target[tag_name] = tag_element;
         });
     };
+
+    // escape method taken from underscorejs
+    // http://underscorejs.org/#escape
+    var entityMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        '/': '&#x2F;'
+    };
+
+    var entityEscapesRegExp = new RegExp('[&<>"\'/]', 'g');
+
+    var escape = function(string) {
+        if (string == null) return '';
+        return ('' + string).replace(entityEscapesRegExp, function(match) {
+          return entityMap[match];
+        });
+    };
+    // end escape method
 
     var handlePickedTag = function(reason){
         var to_target = interestingTags;
@@ -254,6 +275,8 @@ function pickedTags(){
 
         var tagnames = getUniqueWords($(input_sel).attr('value'));
 
+        // FILTER tagnames
+        //
         if (reason !== 'subscribed') {//for "subscribed" we do not remove
             $.each(tagnames, function(idx, tagname) {
                 if (tagname in from_target) {
@@ -265,6 +288,7 @@ function pickedTags(){
         var clean_tagnames = [];
         $.each(tagnames, function(idx, tagname){
             if (!(tagname in to_target)){
+                tagname = escape(tagname);
                 clean_tagnames.push(tagname);
             }
         });
@@ -276,7 +300,7 @@ function pickedTags(){
                 clean_tagnames,
                 reason,
                 'add',
-                function(){ 
+                function(){
                     renderNewTags(
                         clean_tagnames,
                         reason,
@@ -346,7 +370,7 @@ function pickedTags(){
     };
 
     var getResultCallback = function(reason){
-        return function(){ 
+        return function(){
             handlePickedTag(reason);
         };
     };
