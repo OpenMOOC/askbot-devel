@@ -33,7 +33,7 @@
 <div id="{{post.post_type}}-img-upvote-{{ post.id }}"
     class="{{post.post_type}}-img-upvote post-vote">
 </div>
-<div 
+<div
     id="{{post.post_type}}-vote-number-{{ post.id }}"
     class="vote-number"
     title="{% trans %}current number of votes{% endtrans %}"
@@ -79,7 +79,7 @@
         post, contributor_type, is_wiki, wiki_min_rep,
         karma_mode = None, badges_mode = None
     ) -%}
-{# there is a whole bunch of trickery here, probably indicative of 
+{# there is a whole bunch of trickery here, probably indicative of
 poor design of the data or methods on data objects #}
 {% if contributor_type=="original_author" %}
     <div class='post-update-info'>
@@ -135,7 +135,7 @@ poor design of the data or methods on data objects #}
     {% if last_edited_at %}
     <div class='post-update-info'>
         <p style="line-height:12px;">
-            <a 
+            <a
         {% if post.post_type == 'question' %}
             href="{% url question_revisions post.id %}"
         {% else %}
@@ -144,7 +144,7 @@ poor design of the data or methods on data objects #}
             >{% trans %}updated{% endtrans %} <strong>{{ timeago(last_edited_at) }}</strong></a>
         </p>
         {% if original_author != update_author or is_wiki %}
-            {{ 
+            {{
                 post_contributor_avatar_and_credentials(
                     post, update_author,
                     karma_mode = karma_mode, badges_mode = badges_mode
@@ -167,7 +167,7 @@ poor design of the data or methods on data objects #}
 {%- macro tag_cloud(tags = None, font_sizes = None, search_state = None) -%}
     {% for tag in tags %}
     <span class="tag-size-{{ font_sizes[tag.name] }}">
-        <a 
+        <a
             class="link-typeA"
             title="Number of entries: {{ tag.used_count }}"
             href="{{ search_state.add_tag(tag.name).full_url() }}"
@@ -334,7 +334,7 @@ poor design of the data or methods on data objects #}
     {% for choice in choices %}
         <p class="choice">
             {% set id = "id_" ~ name ~ "_" ~ choice[0] %}
-            <input 
+            <input
                 id="{{ id }}"
                 name="{{ name }}"
                 value="{{ choice[0] }}"
@@ -385,7 +385,7 @@ for the purposes of the AJAX comment editor #}
     {% spaceless %}
     {% if post.comment_count > 0 %}
         <h2 id="comment-title">Comments</h2>
-        <div class="clean"></div> 
+        <div class="clean"></div>
     {% endif %}
     {% set widget_id = 'comments-for-' + post.post_type + '-' + post.id|string %}
     <div class="comments" id="{{widget_id}}">
@@ -401,8 +401,8 @@ for the purposes of the AJAX comment editor #}
                 <div class="comment" id="comment-{{comment.id}}">
                     <div class="comment-votes">
                         {% if comment.score > 0 %}
-                            <div 
-                                id="comment-img-upvote-{{comment.id}}" 
+                            <div
+                                id="comment-img-upvote-{{comment.id}}"
                                 class="upvote"
                             >{{comment.score}}</div>
                             <script type="text/javascript">
@@ -412,7 +412,7 @@ for the purposes of the AJAX comment editor #}
                             <div class="upvote"></div>
                         {% endif %}
                     </div>
-                    <div 
+                    <div
                         id="post-{{comment.id}}-delete"
                         class="comment-delete"
                     >
@@ -472,9 +472,9 @@ for the purposes of the AJAX comment editor #}
 
 {%- macro reversible_sort_button(button_sort_criterium=None, asc_tooltip=None,
             desc_tooltip=None, label=None, current_sort_method=None, search_state=None) -%}
-{# 
+{#
     sort button where descending sort is default
-    and the search method is togglable between ascending and descending 
+    and the search method is togglable between ascending and descending
     buttons are rendered as links with id constructed as
     "by_" + button_sort_criterium
     class "on" is added when current_sort_method is one of
@@ -510,8 +510,8 @@ for the purposes of the AJAX comment editor #}
 {%- macro checkbox_in_div(checkbox_field, class = 'checkbox') -%}
     <div{% if class %} class="{{class}}"{% endif %}
         title="{{checkbox_field.help_text}}">
-        {{ checkbox_field }} 
-        {{ checkbox_field.label_tag() }} 
+        {{ checkbox_field }}
+        {{ checkbox_field.label_tag() }}
         {{ checkbox_field.errors }}
     </div>
 {%- endmacro -%}
@@ -593,11 +593,11 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 
 {%- macro user_country_flag(user) -%}
     {% if user.country and user.show_country %}
-        <img class="flag" 
+        <img class="flag"
             src="{{ ('/images/flags/' ~ user.country.code|lower ~ '.gif')|media }}"
-            alt="{% trans 
-                    country=user.country.name 
-                    %}flag of {{country}}{% 
+            alt="{% trans
+                    country=user.country.name
+                    %}flag of {{country}}{%
                 endtrans %}"
             title="{% trans 
                     country=user.country.name, 
@@ -633,7 +633,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {% spaceless %}
 <a style="text-decoration:none"
     href="{{ user.get_absolute_url() }}"
-><img class="gravatar" 
+><img class="gravatar"
     width="{{size}}" height="{{size}}"
     src="{{ user.get_avatar_url(size) }}"
     title="{{user.username|escape}}" 
@@ -670,7 +670,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
             {% endfor %}
         ...
         {% endif %}
-         
+
         {% for num in p.page_numbers %}
           {% if num == p.page and p.pages != 1%}
             <span class="curr" title="{% trans %}current page{% endtrans %}">{{ num }}</span>
@@ -678,7 +678,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
             <span class="page"><a href="{{p.base_url}}page={{ num }}{{ anchor }}" title="{% trans %}page {{num}}{% endtrans %}">{{ num }}</a></span>
           {% endif %}
         {% endfor %}
-         
+
         {% if not p.in_trailing_range %}
             ...
             {% for num in p.pages_outside_leading_range|reverse %}
@@ -766,9 +766,9 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
             {% endif %}
             />
         {% elif moderation_items['seen_count'] > 0 %}
-            <img src={{'/images/dialog-warning-off.png'|media}} 
-                alt="{% trans seen=moderation_items['seen_count'] %}{{seen}} flagged posts{% endtrans %}" 
-                title="{% trans seen=moderation_items['seen_count'] %}{{seen}} flagged posts{% endtrans %}" 
+            <img src={{'/images/dialog-warning-off.png'|media}}
+                alt="{% trans seen=moderation_items['seen_count'] %}{{seen}} flagged posts{% endtrans %}"
+                title="{% trans seen=moderation_items['seen_count'] %}{{seen}} flagged posts{% endtrans %}"
             />
         {% endif %}
         </a>
@@ -776,7 +776,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {%- macro timeago(datetime_object) -%}
-    <abbr class="timeago" title="{{datetime_object.replace(microsecond=0)|add_tz_offset}}">
-        {{datetime_object.replace(microsecond=0)|add_tz_offset}}
+    <abbr class="timeago" title="{{datetime_object|diff_date}}">
+        {{datetime_object|diff_date}}
     </abbr>
 {%- endmacro -%}
