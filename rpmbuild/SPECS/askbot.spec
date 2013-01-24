@@ -1,5 +1,5 @@
 Name:           askbot
-Version:        0.7.39
+Version:        0.7.44
 Release:        1%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
@@ -10,6 +10,7 @@ Source1:        askbot.wsgi
 Source2:        askbot-settings.py
 Source3:        askbot-httpd.conf
 Source4:        README.fedora
+
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext
 
@@ -22,6 +23,7 @@ Requires:       python-unidecode python-httplib2 python-psycopg2 python-akismet
 Requires:       python-multi-registry python-import-utils python-wordpress-xmlrpc
 Requires:       django-recaptcha-works django-picklefield pystache
 Requires:       django-extra-form-fields django-authenticator = 0.1.4
+Requires: 	python-beautifulsoup4 python-lamson django-longerusernam
 
 # optional dependencies 
 Requires:       django-followit django-avatar
@@ -37,6 +39,7 @@ Requires:       python-dateutil15
 Requires:       python-dateutil
 %endif
 
+
 %description
 Question and answer forum written in python and django. 
 
@@ -50,7 +53,7 @@ Features:
    * can import data from stack-exchange database file
 
 %prep
-%setup -q 
+%setup -q
 
 # remove empty files
 rm -rf %{name}/doc/build/html/.buildinfo
@@ -90,11 +93,10 @@ sed -i 's/@SITENAME@/ask/g' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config
 sed -i 's/postgresql_psycopg2/sqlite3/' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
 sed -i 's/@DATABASENAME@/\/var\/lib\/askbot\/ask.sqlite/g' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
 
-
-install -d %{buildroot}/%{_sysconfdir}/httpd/conf.d/
-install -p -m 644 %{SOURCE3} %{buildroot}/%{_sysconfdir}/httpd/conf.d/askbot.conf
+install -d %{buildroot}%{_defaultdocdir}/%{name}-%{version}
+install -p -m 644 %{SOURCE3} %{buildroot}%{_defaultdocdir}/%{name}-%{version}/askbot-httpd.conf
 %if 0%{?rhel}
-sed -i 's/python2.7/python2.6/g' %{buildroot}/%{_sysconfdir}/httpd/conf.d/askbot.conf
+sed -i 's/python2.7/python2.6/g' %{buildroot}%{_defaultdocdir}/%{name}-%{version}/askbot-httpd.conf
 %endif
 
 install -d %{buildroot}/%{_localstatedir}/log/%{name}
@@ -109,7 +111,7 @@ install -p -m 644 %{SOURCE4} .
 %dir %{_sysconfdir}/%{name}
 %config(noreplace)     %{_sysconfdir}/%{name}/setup_templates
 %config(noreplace) %attr(-,apache,apache) %{_sysconfdir}/%{name}/sites
-%config(noreplace)     %{_sysconfdir}/httpd/conf.d/askbot.conf
+# %config(noreplace)     %{_sysconfdir}/httpd/conf.d/askbot.conf
 %attr(-,apache,apache) %{_localstatedir}/log/%{name}/
 %attr(-,apache,apache) %{_sharedstatedir}/%{name}/
 %dir %{python_sitelib}/%{name}/
@@ -123,11 +125,14 @@ install -p -m 644 %{SOURCE4} .
 %{python_sitelib}/%{name}/deployment/
 %{python_sitelib}/%{name}/shims/
 %{python_sitelib}/%{name}/skins/
+%{python_sitelib}/%{name}/media/
+%{python_sitelib}/%{name}/templates/
 %{python_sitelib}/%{name}/templatetags/
 %{python_sitelib}/%{name}/tests/
 %{python_sitelib}/%{name}/utils/
 %{python_sitelib}/%{name}/views/
 %{python_sitelib}/%{name}/setup_templates/
+%{python_sitelib}/%{name}/mail/
 %{python_sitelib}/%{name}/migrations/
 %{python_sitelib}/%{name}/models/
 %{python_sitelib}/%{name}/management/
@@ -148,7 +153,17 @@ install -p -m 644 %{SOURCE4} .
 %{python_sitelib}/%{name}/user_messages/
 %{python_sitelib}/askbot*.egg-info
 
+%dir %{python_sitelib}/group_messaging
+%dir %{python_sitelib}/group_messaging/migrations
+%{python_sitelib}/group_messaging/*.py*
+%{python_sitelib}/group_messaging/migrations/*.py*
+
 %changelog
+* Thu Jan 24 2013 Antonio Perez-Aranda <aperezaranda@yaco.es> - 0.7.44-1
+- update to 0.7.44
+- Move askbot-httpd.conf to /usr/share/doc/askbot-version to make askbot
+  compatible with virtualhost.
+
 * Sat Jan 14 2012 Rahul Sundaram <sundaram@fedoraproject.org> - 0.7.39-1
 - update to 0.7.39
   * restored facebook login after FB changed the procedure (Evgeny)
