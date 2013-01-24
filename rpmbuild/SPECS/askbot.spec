@@ -14,7 +14,7 @@ Source4:        README.fedora
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext
 
-Requires:       Django Django-south  
+Requires:       Django14 Django-south  
 Requires:       django-keyedcache django-robots django-countries 
 Requires:       django-kombu django-threaded-multihost 
 Requires:       python-html5lib python-oauth2 python-coffin python-markdown2  
