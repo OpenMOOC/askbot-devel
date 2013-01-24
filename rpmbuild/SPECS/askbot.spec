@@ -23,7 +23,7 @@ Requires:       python-unidecode python-httplib2 python-psycopg2 python-akismet
 Requires:       python-multi-registry python-import-utils python-wordpress-xmlrpc
 Requires:       django-recaptcha-works django-picklefield pystache
 Requires:       django-extra-form-fields django-authenticator = 0.1.4
-Requires: 	python-beautifulsoup4 python-lamson django-longerusernam
+Requires: 	python-beautifulsoup4 python-lamson django-longerusername
 
 # optional dependencies 
 Requires:       django-followit django-avatar
