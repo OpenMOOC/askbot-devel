@@ -1,0 +1,64 @@
+Askbot RPM package has extra configuration to making it easier to deploy 
+multiple sites in the same system and make it suitable for packaging.  All 
+changes have been reviewed by Evgeny Fadeev, primary Askbot developer.
+
+* /usr/sbin/askbot.wsgi provides the wsgi interface
+* /etc/askbot provides site configuration templates
+* /etc/httpd/conf.d/askbot.conf is a Apache HTTP configuration template
+
+askbot.wsgi
+===========
+
+The askbot.wsgi file is designed to be usable without changes by any site.
+Configuration is done in the /etc/httpd/conf.d/askbot.conf file and the
+settings files under /etc/askbot.
+
+/etc/httpd/conf.d/askbot.conf
+=============================
+
+This is a sample file for setting up an askbot instance.  If you want to run
+multiple sites, you need to copy this file and modify the python-path to point
+to a different site configuration directory for every site.  For instance::
+
+    # cd /etc/httpd/conf.d
+    # cp askbot.conf myask.conf
+    # edit myasksite.conf to change:
+    - WSGIDaemonProcess askbot user=apache group=apache maximum-requests=1000 display-name=askbot processes=6 threads=1 shutdown-timeout=10 python-path=/etc/askbot/sites/ask
+    + WSGIDaemonProcess askbot user=apache group=apache maximum-requests=1000 display-name=askbot processes=6 threads=1 shutdown-timeout=10 python-path=/etc/askbot/sites/myask
+
+/etc/askbot
+===========
+
+The rpm creates an /etc/askbot directory which holds configuration information
+for each site.  To setup a new site, you need to create a directory under sites
+that matches the python-path you set in the httd config file above and then
+copy the setup_templates directory to 'config' under that new directory.
+The apache user will need to be able to read these files but you want to make
+sure that no one else can (since you'll have database passwords in them).
+Here's an example, continuing to call the new site "myask"::
+
+    # cd /etc/askbot/sites
+    # mkdir myask
+    # cp -pr ../setup_templates myask/conf
+    # chown -R apache:apache myask
+
+Then you need to modify the configuration settings for the askbot site for your
+environment.  These are found in the settings.py file that you copied into the
+new site configuration directory
+(/etc/askbot/sites/myask/config/settings.py in our example).  The
+minimal things you'll need to change are:
+
+* setting the DATABASE* variables to reference your database
+
+* setting ASKBOT_FILE_UPLOAD_DIR to an upload directory for your site.
+  Remember to create the directory as well.  The rpm package provides
+  /var/lib/askbot/upfiles for you and you can add a directory
+  to that per-site like this::
+
+      # cd /var/lib/askbot/upfiles
+      # mkdir myask
+      # chown apache:apache myask
+
+* setting LOG_FILENAME to something unique for your site.  The rpm package has
+  configured /var/log/askbot for log files, if you set LOG_FILENAME =
+  'myask.log', the log file will appear in /var/log/askbot/myask.log
