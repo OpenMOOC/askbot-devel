@@ -5074,8 +5074,7 @@ msgstr "¿Que tipo de preguntas puedo hacer aquí?"
 
 #: skins/default/templates/faq_static.html:7
 msgid ""
-"Most importanly - questions should be <strong>relevant</strong> to this "
-"community."
+"Most importantly - questions should be <strong>relevant</strong> to this community."
 msgstr ""
 "Los más importante, las preguntas deben de ser <strong>relevantes</strong> "
 "para esta comunidad."
@@ -5260,7 +5259,7 @@ msgid ""
 "No, you don't have to. You can login through any service that supports "
 "OpenID, e.g. Google, Yahoo, AOL, etc.\""
 msgstr ""
-"Necesitarás la misma contraseña que usas para acceder a la herramienta de "
+"necesitarás la misma contraseña que usas para acceder a la herramienta de "
 "cursos"
 
 #: skins/default/templates/faq_static.html:73
@@ -5294,9 +5293,9 @@ msgid "Still have questions?"
 msgstr "Aún tiene preguntas?"
 
 #: skins/default/templates/faq_static.html:80
-#, fuzzy, python-format
+#,python-format
 msgid ""
-"Please <a href='%%(ask_question_url)s'>ask</a> your question, help make our "
+"Please <a href='%(ask_question_url)s'>ask</a> your question, help make our "
 "community better!"
 msgstr ""
 "Por favor <a href='%(ask_question_url)s'>haz tu pregunta</a>, y ayudaras a "
