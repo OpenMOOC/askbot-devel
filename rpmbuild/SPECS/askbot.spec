@@ -14,16 +14,18 @@ Source4:        README.fedora
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext
 
-Requires:       Django14 Django-south  
-Requires:       django-keyedcache django-robots django-countries 
-Requires:       django-kombu django-threaded-multihost 
-Requires:       python-html5lib python-oauth2 python-coffin python-markdown2  
+Requires:       Django14 Django-south
+Requires:       django-keyedcache django-robots django-countries
+Requires:       django-kombu django-threaded-multihost
+Requires:       python-html5lib python-oauth2 python-coffin python-markdown2
 Requires:       python-recaptcha-client MySQL-python python-openid python-amqplib
 Requires:       python-unidecode python-httplib2 python-psycopg2 python-akismet
 Requires:       python-multi-registry python-import-utils python-wordpress-xmlrpc
 Requires:       django-recaptcha-works django-picklefield pystache
 Requires:       django-extra-form-fields django-authenticator = 0.1.4
-Requires: 	python-beautifulsoup4 python-lamson django-longerusername
+Requires:       python-beautifulsoup4 python-lamson django-longerusername
+Requires:       pytz
+Requires:       django-tinymce = 1.5.1b1
 
 # optional dependencies 
 Requires:       django-followit django-avatar
@@ -41,7 +43,7 @@ Requires:       python-dateutil
 
 
 %description
-Question and answer forum written in python and django. 
+Question and answer forum written in python and django.
 
 Features:
 
