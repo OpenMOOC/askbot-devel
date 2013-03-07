@@ -1342,8 +1342,8 @@ EditCommentForm.prototype.createDom = function(){
 };
 
 EditCommentForm.prototype.enableButtons = function(){
-    this._submit_btn.attr('disabled', '');
-    this._cancel_btn.attr('disabled', '');
+    this._submit_btn.removeAttr('disabled');
+    this._cancel_btn.removeAttr('disabled');
 };
 
 EditCommentForm.prototype.disableButtons = function(){
