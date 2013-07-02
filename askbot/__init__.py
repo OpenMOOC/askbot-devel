@@ -13,7 +13,8 @@ VERSION = (0, 7, 44)
 #values - the package qualifier to use for pip
 REQUIREMENTS = {
     'akismet': 'akismet',
-    'django': 'django>=1.3.1',
+    'django': 'django==1.4.5',
+    'memcached': 'python-memcached==1.48',
     'jinja2': 'Jinja2',
     'coffin': 'Coffin>=0.3',
     'south': 'South>=0.7.1',
@@ -39,7 +40,7 @@ REQUIREMENTS = {
 
 if platform.system() != 'Windows':
     REQUIREMENTS['lamson'] = 'Lamson'
-    
+
 #necessary for interoperability of django and coffin
 try:
     from askbot import patches
