@@ -1,14 +1,13 @@
-Name:           askbot
+Name:           openmooc-askbot
 Version:        0.7.44
-Release:        1%{?dist}
-Summary:        Question and Answer forum
+Release:        2%{?dist}
+Summary:        Question and Answer forum. OpenMOOC fork.
 Group:          Applications/Publishing
 License:        GPLv3+
 URL:            http://askbot.org
-Source0:        http://pypi.python.org/packages/source/a/%{name}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/OpenMOOC/askbot-devel/archive/spanish-translations.tar.gz
 Source1:        askbot.wsgi
 Source2:        askbot-settings.py
-Source3:        askbot-httpd.conf
 Source4:        README.fedora
 
 BuildArch:      noarch
@@ -160,6 +159,9 @@ install -p -m 644 %{SOURCE4} .
 %{python_sitelib}/group_messaging/migrations/*.py*
 
 %changelog
+* Tue Jul 9 2013 Oscar Carballal Prego <ocarballal@yaco.es> - 0.7.44-2
+- Minor fixes. Removed httpd, updated some stuff.
+
 * Thu Jan 24 2013 Antonio Perez-Aranda <aperezaranda@yaco.es> - 0.7.44-1
 - update to 0.7.44
 - Move askbot-httpd.conf to /usr/share/doc/askbot-version to make askbot
