@@ -32,8 +32,7 @@ Requires:       django-followit django-avatar
 # for building the doc
 Requires:       python-sphinx
 
-Requires:       django-celery = 2.2.7
-Requires:       httpd
+Requires:       django-celery = 3.0.17
 
 %if 0%{?rhel}
 Requires:       python-dateutil15
