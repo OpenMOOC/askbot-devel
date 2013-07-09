@@ -14,7 +14,7 @@ VERSION = (0, 7, 44)
 REQUIREMENTS = {
     'akismet': 'akismet',
     'django': 'django==1.4.5',
-    'memcached': 'python-memcached==1.48',
+    'memcache': 'python-memcached==1.48',
     'jinja2': 'Jinja2',
     'coffin': 'Coffin>=0.3',
     'south': 'South>=0.7.1',
