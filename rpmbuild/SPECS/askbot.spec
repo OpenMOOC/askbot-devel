@@ -1,4 +1,5 @@
-Name:           openmooc-askbot
+%define platform openmooc         
+Name:           askbot
 Version:        0.7.44
 Release:        2%{?dist}
 Summary:        Question and Answer forum. OpenMOOC fork.
@@ -6,9 +7,10 @@ Group:          Applications/Publishing
 License:        GPLv3+
 URL:            http://askbot.org
 Source0:        https://github.com/OpenMOOC/askbot-devel/archive/spanish-translations.tar.gz
-Source1:        askbot.wsgi
+Source1:        askbot-httpd.conf
 Source2:        askbot-settings.py
 Source4:        README.fedora
+Source5:        askbot.wsgi
 
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext
