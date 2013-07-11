@@ -28,7 +28,7 @@ Requires:       django-recaptcha-works django-picklefield pystache
 Requires:       django-extra-form-fields django-authenticator = 0.1.4
 Requires:       python-beautifulsoup4 python-lamson python-django-longerusername
 Requires:       pytz
-Requires:       python-django-tinymce = 1.5.1b1
+Requires:       python-django-tinymce >= 1.5.1b1
 
 # optional dependencies 
 Requires:       django-followit django-avatar
@@ -110,6 +110,7 @@ install -p -m 644 %{SOURCE4} .
 
 %files -f %{srcname}.lang 
 %doc LICENSE COPYING AUTHORS README.rst README.fedora
+%doc %{_defaultdocdir}/%{srcname}-%{version}/askbot-httpd.conf
 %{_bindir}/askbot-setup
 %{_sbindir}/askbot.wsgi
 %dir %{_sysconfdir}/%{srcname}
