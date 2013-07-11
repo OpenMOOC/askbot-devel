@@ -1,5 +1,7 @@
-%define platform openmooc         
-Name:           askbot
+%define srcname askbot
+%define platform openmooc
+
+Name:           %{platform}-%{srcname}
 Version:        0.7.44
 Release:        2%{?dist}
 Summary:        Question and Answer forum. OpenMOOC fork.
@@ -7,10 +9,10 @@ Group:          Applications/Publishing
 License:        GPLv3+
 URL:            http://askbot.org
 Source0:        https://github.com/OpenMOOC/askbot-devel/archive/spanish-translations.tar.gz
-Source1:        askbot-httpd.conf
+Source1:        askbot.wsgi
 Source2:        askbot-settings.py
+Source3:        askbot-httpd.conf
 Source4:        README.fedora
-Source5:        askbot.wsgi
 
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext
@@ -24,9 +26,9 @@ Requires:       python-unidecode python-httplib2 python-psycopg2 python-akismet
 Requires:       python-multi-registry python-import-utils python-wordpress-xmlrpc
 Requires:       django-recaptcha-works django-picklefield pystache
 Requires:       django-extra-form-fields django-authenticator = 0.1.4
-Requires:       python-beautifulsoup4 python-lamson django-longerusername
+Requires:       python-beautifulsoup4 python-lamson python-django-longerusername
 Requires:       pytz
-Requires:       django-tinymce = 1.5.1b1
+Requires:       python-django-tinymce = 1.5.1b1
 
 # optional dependencies 
 Requires:       django-followit django-avatar
@@ -46,7 +48,7 @@ Requires:       python-dateutil
 Question and answer forum written in python and django.
 
 Features:
-
+::":
    * standard Q&A functionality including votes, reputation system, etc.
    * user levels: admin, moderator, regular, suspended, blocked
    * per-user in-box for responses & flagged items (for moderators)
@@ -55,7 +57,7 @@ Features:
    * can import data from stack-exchange database file
 
 %prep
-%setup -q
+%setup -q -n askbot-devel-spanish-translations
 
 # remove empty files
 rm -rf %{name}/doc/build/html/.buildinfo
@@ -106,9 +108,8 @@ install -d %{buildroot}/%{_sharedstatedir}/%{name}/upfiles/ask
 install -p -m 644 %{SOURCE4} .
 
 %files -f %{name}.lang 
-%doc PKG-INFO LICENSE COPYING AUTHORS README.rst README.fedora
+%doc LICENSE COPYING AUTHORS README.rst README.fedora
 %{_bindir}/askbot-setup
-
 %{_sbindir}/askbot.wsgi
 %dir %{_sysconfdir}/%{name}
 %config(noreplace)     %{_sysconfdir}/%{name}/setup_templates
