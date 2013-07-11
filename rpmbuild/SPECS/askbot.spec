@@ -34,7 +34,6 @@ Requires:       python-django-tinymce = 1.5.1b1
 Requires:       django-followit django-avatar
 # for building the doc
 Requires:       python-sphinx
-
 Requires:       django-celery = 3.0.17
 
 %if 0%{?rhel}
@@ -43,6 +42,8 @@ Requires:       python-dateutil15
 Requires:       python-dateutil
 %endif
 
+# We must the system askbots if it's installed
+Conflicts:      askbot
 
 %description
 Question and answer forum written in python and django.
@@ -60,11 +61,11 @@ Features:
 %setup -q -n askbot-devel-spanish-translations
 
 # remove empty files
-rm -rf %{name}/doc/build/html/.buildinfo
-rm -rf %{name}/db
+rm -rf %{srcname}/doc/build/html/.buildinfo
+rm -rf %{sername}/db
 
 # remove shebang
-sed -i -e '1d' %{name}/setup_templates/manage.py
+sed -i -e '1d' %{srcname}/setup_templates/manage.py
 
 %build
 %{__python} setup.py build
@@ -75,85 +76,85 @@ sed -i -e '1d' %{name}/setup_templates/manage.py
 # Language files; not under /usr/share, need to be handled manually
 (cd %{buildroot} && find . -name 'django.?o' && find . -name 'djangojs.?o') | sed -e 's|^.||' | sed -e \
   's:\(.*/locale/\)\([^/_]\+\)\(.*\.mo$\):%lang(\2) \1\2\3:' \
-  >> %{name}.lang
+  >> %{srcname}.lang
 
 # add /etc/askbot, wsgi and httpd configuration files 
 install -d %{buildroot}/%{_sbindir}/
 install -p -m 755 %{SOURCE1} %{buildroot}%{_sbindir}/
 
-rm -rf  %{buildroot}/%{python_sitelib}/%{name}/setup_templates/{upfiles,log}
-rm -rf  %{buildroot}/%{python_sitelib}/%{name}/upfiles
+rm -rf  %{buildroot}/%{python_sitelib}/%{srcname}/setup_templates/{upfiles,log}
+rm -rf  %{buildroot}/%{python_sitelib}/%{srcname}/upfiles
 
-install -p -m 644 %{SOURCE2} %{buildroot}/%{python_sitelib}/%{name}/setup_templates/settings.py
-install -d %{buildroot}/%{_sysconfdir}/%{name}/setup_templates
-cp -r %{buildroot}/%{python_sitelib}/%{name}/setup_templates/* \
-          %{buildroot}/%{_sysconfdir}/%{name}/setup_templates
+install -p -m 644 %{SOURCE2} %{buildroot}/%{python_sitelib}/%{srcname}/setup_templates/settings.py
+install -d %{buildroot}/%{_sysconfdir}/%{srcname}/setup_templates
+cp -r %{buildroot}/%{python_sitelib}/%{srcname}/setup_templates/* \
+          %{buildroot}/%{_sysconfdir}/%{srcname}/setup_templates
 
-install -d %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config
-cp -r %{buildroot}/%{python_sitelib}/%{name}/setup_templates/* \
-          %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config
+install -d %{buildroot}/%{_sysconfdir}/%{srcname}/sites/ask/config
+cp -r %{buildroot}/%{python_sitelib}/%{srcname}/setup_templates/* \
+          %{buildroot}/%{_sysconfdir}/%{srcname}/sites/ask/config
 
-sed -i 's/@SITENAME@/ask/g' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
-sed -i 's/postgresql_psycopg2/sqlite3/' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
-sed -i 's/@DATABASENAME@/\/var\/lib\/askbot\/ask.sqlite/g' %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
+sed -i 's/@SITENAME@/ask/g' %{buildroot}/%{_sysconfdir}/%{srcname}/sites/ask/config/settings.py
+sed -i 's/postgresql_psycopg2/sqlite3/' %{buildroot}/%{_sysconfdir}/%{srcname}/sites/ask/config/settings.py
+sed -i 's/@DATABASENAME@/\/var\/lib\/askbot\/ask.sqlite/g' %{buildroot}/%{_sysconfdir}/%{srcname}/sites/ask/config/settings.py
 
-install -d %{buildroot}%{_defaultdocdir}/%{name}-%{version}
-install -p -m 644 %{SOURCE3} %{buildroot}%{_defaultdocdir}/%{name}-%{version}/askbot-httpd.conf
+install -d %{buildroot}%{_defaultdocdir}/%{srcname}-%{version}
+install -p -m 644 %{SOURCE3} %{buildroot}%{_defaultdocdir}/%{srcname}-%{version}/askbot-httpd.conf
 %if 0%{?rhel}
-sed -i 's/python2.7/python2.6/g' %{buildroot}%{_defaultdocdir}/%{name}-%{version}/askbot-httpd.conf
+sed -i 's/python2.7/python2.6/g' %{buildroot}%{_defaultdocdir}/%{srcname}-%{version}/askbot-httpd.conf
 %endif
 
-install -d %{buildroot}/%{_localstatedir}/log/%{name}
-install -d %{buildroot}/%{_sharedstatedir}/%{name}/upfiles/ask
+install -d %{buildroot}/%{_localstatedir}/log/%{srcname}
+install -d %{buildroot}/%{_sharedstatedir}/%{srcname}/upfiles/ask
 install -p -m 644 %{SOURCE4} .
 
-%files -f %{name}.lang 
+%files -f %{srcname}.lang 
 %doc LICENSE COPYING AUTHORS README.rst README.fedora
 %{_bindir}/askbot-setup
 %{_sbindir}/askbot.wsgi
-%dir %{_sysconfdir}/%{name}
-%config(noreplace)     %{_sysconfdir}/%{name}/setup_templates
-%config(noreplace) %attr(-,apache,apache) %{_sysconfdir}/%{name}/sites
+%dir %{_sysconfdir}/%{srcname}
+%config(noreplace)     %{_sysconfdir}/%{srcname}/setup_templates
+%config(noreplace) %attr(-,apache,apache) %{_sysconfdir}/%{srcname}/sites
 # %config(noreplace)     %{_sysconfdir}/httpd/conf.d/askbot.conf
-%attr(-,apache,apache) %{_localstatedir}/log/%{name}/
-%attr(-,apache,apache) %{_sharedstatedir}/%{name}/
-%dir %{python_sitelib}/%{name}/
-%dir %{python_sitelib}/%{name}/locale/
-%{python_sitelib}/%{name}/doc
-%{python_sitelib}/%{name}/*.py*
-%{python_sitelib}/%{name}/bin/
-%{python_sitelib}/%{name}/conf/
-%{python_sitelib}/%{name}/const/
-%{python_sitelib}/%{name}/cron
-%{python_sitelib}/%{name}/deployment/
-%{python_sitelib}/%{name}/shims/
-%{python_sitelib}/%{name}/skins/
-%{python_sitelib}/%{name}/media/
-%{python_sitelib}/%{name}/templates/
-%{python_sitelib}/%{name}/templatetags/
-%{python_sitelib}/%{name}/tests/
-%{python_sitelib}/%{name}/utils/
-%{python_sitelib}/%{name}/views/
-%{python_sitelib}/%{name}/setup_templates/
-%{python_sitelib}/%{name}/mail/
-%{python_sitelib}/%{name}/migrations/
-%{python_sitelib}/%{name}/models/
-%{python_sitelib}/%{name}/management/
-%dir %{python_sitelib}/%{name}/deps/
-%{python_sitelib}/%{name}/deps/*.py*
-%{python_sitelib}/%{name}/deps/README
-%{python_sitelib}/%{name}/deps/django_authopenid/
-%dir %{python_sitelib}/%{name}/deps/livesettings/
-%dir %{python_sitelib}/%{name}/deps/livesettings/locale/
-%{python_sitelib}/%{name}/deps/livesettings/*.py*
-%{python_sitelib}/%{name}/deps/livesettings/README
-%{python_sitelib}/%{name}/deps/livesettings/temp*
-%{python_sitelib}/%{name}/importers/
-%{python_sitelib}/%{name}/middleware/
-%{python_sitelib}/%{name}/migrations_api/
-%{python_sitelib}/%{name}/patches/
-%{python_sitelib}/%{name}/search/
-%{python_sitelib}/%{name}/user_messages/
+%attr(-,apache,apache) %{_localstatedir}/log/%{srcname}/
+%attr(-,apache,apache) %{_sharedstatedir}/%{srcname}/
+%dir %{python_sitelib}/%{srcname}/
+%dir %{python_sitelib}/%{srcname}/locale/
+%{python_sitelib}/%{srcname}/doc
+%{python_sitelib}/%{srcname}/*.py*
+%{python_sitelib}/%{srcname}/bin/
+%{python_sitelib}/%{srcname}/conf/
+%{python_sitelib}/%{srcname}/const/
+%{python_sitelib}/%{srcname}/cron
+%{python_sitelib}/%{srcname}/deployment/
+%{python_sitelib}/%{srcname}/shims/
+%{python_sitelib}/%{srcname}/skins/
+%{python_sitelib}/%{srcname}/media/
+%{python_sitelib}/%{srcname}/templates/
+%{python_sitelib}/%{srcname}/templatetags/
+%{python_sitelib}/%{srcname}/tests/
+%{python_sitelib}/%{srcname}/utils/
+%{python_sitelib}/%{srcname}/views/
+%{python_sitelib}/%{srcname}/setup_templates/
+%{python_sitelib}/%{srcname}/mail/
+%{python_sitelib}/%{srcname}/migrations/
+%{python_sitelib}/%{srcname}/models/
+%{python_sitelib}/%{srcname}/management/
+%dir %{python_sitelib}/%{srcname}/deps/
+%{python_sitelib}/%{srcname}/deps/*.py*
+%{python_sitelib}/%{srcname}/deps/README
+%{python_sitelib}/%{srcname}/deps/django_authopenid/
+%dir %{python_sitelib}/%{srcname}/deps/livesettings/
+%dir %{python_sitelib}/%{srcname}/deps/livesettings/locale/
+%{python_sitelib}/%{srcname}/deps/livesettings/*.py*
+%{python_sitelib}/%{srcname}/deps/livesettings/README
+%{python_sitelib}/%{srcname}/deps/livesettings/temp*
+%{python_sitelib}/%{srcname}/importers/
+%{python_sitelib}/%{srcname}/middleware/
+%{python_sitelib}/%{srcname}/migrations_api/
+%{python_sitelib}/%{srcname}/patches/
+%{python_sitelib}/%{srcname}/search/
+%{python_sitelib}/%{srcname}/user_messages/
 %{python_sitelib}/askbot*.egg-info
 
 %dir %{python_sitelib}/group_messaging
