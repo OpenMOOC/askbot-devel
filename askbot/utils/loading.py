@@ -10,7 +10,7 @@ def load_module(mod_path):
     if len(path_bits) > 1:
         mod_name = path_bits.pop()
         mod_prefix = '.'.join(path_bits)
-        _mod = __import__(mod_prefix, globals(), locals(), [mod_name,], -1)
+        _mod = __import__(mod_prefix, globals(), locals())
         return getattr(_mod, mod_name)
     else:
         return __import__(mod_path, globals(), locals(), [], -1)
