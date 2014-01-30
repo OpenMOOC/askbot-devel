@@ -71,6 +71,18 @@ settings.register(
 )
 
 settings.register(
+    livesettings.StringValue(
+        QA_SITE_SETTINGS,
+        'DOMAIN_URL',
+        description=(
+            'Base URL (without path) for your Q&A forum, must start with '
+            'http or https'
+        ),
+    )
+)
+
+
+settings.register(
     livesettings.BooleanValue(
         QA_SITE_SETTINGS,
         'ENABLE_GREETING_FOR_ANON_USER',
