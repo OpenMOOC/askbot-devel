@@ -141,8 +141,8 @@ def questions(request, **kwargs):
         # We have tags in session - pass it to the
         # QueryDict but as a list - we want tags+
         rss_query_dict.setlist("tags", search_state.tags)
-    context_feed_url = '/%sfeeds/rss/?%s' % (
-                            django_settings.ASKBOT_URL,
+    context_feed_url = '%s?%s' % (
+                            reverse('latest_questions_feed'),
                             rss_query_dict.urlencode()
                         ) # Format the url with the QueryDict
 
