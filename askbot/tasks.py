@@ -152,6 +152,9 @@ def record_question_visit(
     if update_view_count:
         question_post.thread.increase_view_count()
 
+    if user_id is None:
+        return
+
     user = User.objects.get(id=user_id)
 
     if user.is_anonymous():
