@@ -43,7 +43,14 @@ def run_full_text_search(query_set, query_text, text_search_vector_name):
                     text_search_vector_name + \
                     ' @@ plainto_tsquery(%s)'
 
-    if getattr(django_settings, 'ASKBOT_MULTILINGUAL', True):
+    from django.db.models.fields import FieldDoesNotExist
+    try:
+        query_set.model._meta.get_field_by_name('language_code')
+        has_language_code = True
+    except FieldDoesNotExist:
+        has_language_code = False
+
+    if has_language_code and getattr(django_settings, 'ASKBOT_MULTILINGUAL', True):
         where_clause += " AND language_code='" + get_language() + "'"
 
     search_query = '&'.join(query_text.split())#apply "AND" operator
