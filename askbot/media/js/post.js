@@ -4034,9 +4034,8 @@ $(document).ready(function() {
         var userSelectHandler = function(data) {
             proxyUserEmailInput.val(data['data'][0]);
         };
-
         var fakeUserAc = new AutoCompleter({
-            url: '/get-users-info/',//askbot['urls']['get_users_info'],
+            url: askbot['urls']['get_users_info'],
             preloadData: true,
             promptText: gettext('User name:'),
             minChars: 1,
