@@ -1,0 +1,38 @@
+From d1ad03a2c94cca69bf713dc23a60d378d8821c1a Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Tue, 5 Feb 2013 10:19:06 -0500
+Subject: [PATCH 2/2] Remove test-skins
+
+---
+ askbot/startup_procedures.py | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
+diff --git a/askbot/startup_procedures.py b/askbot/startup_procedures.py
+index 29754b4..4ac7a3a 100644
+--- a/askbot/startup_procedures.py
++++ b/askbot/startup_procedures.py
+@@ -349,16 +349,11 @@ class SettingsTester(object):
+ 
+ 
+ def test_new_skins():
+-    """tests that there are no directories in the `askbot/skins`
+-    because we've moved skin files a few levels up"""
+-    askbot_root = askbot.get_install_directory()
+-    for item in os.listdir(os.path.join(askbot_root, 'skins')):
+-        item_path = os.path.join(askbot_root, 'skins', item)
+-        if os.path.isdir(item_path):
+-            raise AskbotConfigError(
+-                ('Time to move skin files from %s.\n'
+-                'Now we have `askbot/templates` and `askbot/media`') % item_path
+-            )
++    """ Don't do anything..
++    The skins framework seems to be confused about itself.
++    """
++    pass
++
+ 
+ def test_staticfiles():
+     """tests configuration of the staticfiles app"""
+-- 
+1.8.1
+

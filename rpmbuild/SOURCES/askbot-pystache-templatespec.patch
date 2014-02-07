@@ -1,0 +1,25 @@
+From 22881df0fde0c6974afb263c0feb0123b55beded Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Tue, 5 Feb 2013 13:42:36 -0500
+Subject: [PATCH] pystache-templatespec
+
+---
+ askbot/deployment/template_loader.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/askbot/deployment/template_loader.py b/askbot/deployment/template_loader.py
+index fe7c11e..e681f47 100644
+--- a/askbot/deployment/template_loader.py
++++ b/askbot/deployment/template_loader.py
+@@ -3,7 +3,7 @@ import pystache
+ 
+ SOURCE_DIR = os.path.dirname(os.path.dirname(__file__))
+ 
+-class SettingsTemplate(pystache.View):
++class SettingsTemplate(pystache.TemplateSpec):
+     '''Class for settings'''
+ 
+     template_path = os.path.join(SOURCE_DIR, 'setup_templates')
+-- 
+1.8.1
+

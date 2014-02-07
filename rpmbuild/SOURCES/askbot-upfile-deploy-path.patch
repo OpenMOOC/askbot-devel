@@ -1,0 +1,25 @@
+From 2a4797c7fe41706d1bdcbeca4084e8cc2b85dfa4 Mon Sep 17 00:00:00 2001
+From: anshu <anshu@aerospike.com>
+Date: Mon, 14 Oct 2013 22:53:41 +0530
+Subject: [PATCH] removing upfiles from individual sites folder
+
+---
+ askbot/deployment/path_utils.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/askbot/deployment/path_utils.py b/askbot/deployment/path_utils.py
+index 1229cf1bde3ef7d844f7ee7b37e6a4ec6c9154ba..f0dde1c04e266f2a30be95996b2843bceb101429 100644
+--- a/askbot/deployment/path_utils.py
++++ b/askbot/deployment/path_utils.py
+@@ -211,7 +211,7 @@ def deploy_into(directory, new_project = False, verbosity = 1, context = None):
+         print ''
+     app_dir = os.path.join(directory, 'askbot')
+ 
+-    copy_dirs = ('doc', 'cron', 'upfiles')
++    copy_dirs = ('doc', 'cron')
+     dirs_copied = 0
+     for dir_name in copy_dirs:
+         src = os.path.join(SOURCE_DIR, dir_name)
+-- 
+1.8.3.1
+

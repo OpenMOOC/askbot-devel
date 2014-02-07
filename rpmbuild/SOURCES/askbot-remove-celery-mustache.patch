@@ -1,0 +1,19 @@
+--- a/askbot/setup_templates/settings.py.mustache	
++++ b/askbot/setup_templates/settings.py.mustache
+@@ -182,7 +182,6 @@
+     'keyedcache',
+     'robots',
+     'django_countries',
+-    'djcelery',
+     'djkombu',
+     'followit',
+     'tinymce',
+@@ -236,8 +235,6 @@
+ BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
+ CELERY_ALWAYS_EAGER = True
+ 
+-import djcelery
+-djcelery.setup_loader()
+ DOMAIN_NAME = '{{domain_name}}'
+ 
+ CSRF_COOKIE_NAME = '{{domain_name}}_csrf'

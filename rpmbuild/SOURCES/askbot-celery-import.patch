@@ -1,0 +1,28 @@
+From a45b5f2bdfd2ce98ca3df9d81714a4f4c2f9c2b5 Mon Sep 17 00:00:00 2001
+From: Anshu Prateek <anshprat@fedoraproject.org>
+Date: Fri, 1 Nov 2013 09:05:54 +0000
+Subject: [PATCH 2/2] Fedora build patch-2
+
+---
+ askbot/models/__init__.py |    7 +++++--
+ 1 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/askbot/models/__init__.py b/askbot/models/__init__.py
+index a2f55ab7f92d4f089f23e3368e028324eb06aa9d..b94bc14308b26bd87d0d7e3f71c4b8212a1bf1ce 100644
+--- a/askbot/models/__init__.py	
++++ b/askbot/models/__init__.py	
+@@ -16,8 +16,12 @@
+ import re
+ import urllib
+ import uuid
+-from celery import states
+-from celery.task import task
++try:
++    from celery import states
++    from celery.task import task
++except ImportError:
++    pass
++
+ from django.core.urlresolvers import reverse, NoReverseMatch
+ from django.db.models import signals as django_signals
+ from django.template import Context

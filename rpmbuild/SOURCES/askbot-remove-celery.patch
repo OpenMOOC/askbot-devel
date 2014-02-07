@@ -1,0 +1,36 @@
+From 7116c462f9fed3dc22ba8a8158bbd2051d76a932 Mon Sep 17 00:00:00 2001
+From: Anshu Prateek <anshprat@fedoraproject.org>
+Date: Fri, 1 Nov 2013 18:09:28 +0000
+Subject: [PATCH 4/4] 004
+
+---
+ askbot/setup_templates/settings.py |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/askbot/setup_templates/settings.py b/askbot/setup_templates/settings.py
+index 7a856f6fa6e2d4d166271eb904f8ef28c322de05..1df3490e92e9f015322e3cb94f4a30d0237c1bf0 100644
+--- a/askbot/setup_templates/settings.py
++++ b/askbot/setup_templates/settings.py
+@@ -185,7 +185,7 @@ INSTALLED_APPS = (
+     'keyedcache',
+     'robots',
+     'django_countries',
+-    'djcelery',
++
+     'djkombu',
+     'followit',
+     'tinymce',
+@@ -240,8 +240,8 @@ ASKBOT_USE_STACKEXCHANGE_URLS = False #mimic url scheme of stackexchange
+ BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
+ CELERY_ALWAYS_EAGER = True
+ 
+-import djcelery
+-djcelery.setup_loader()
++
++
+
+ CSRF_COOKIE_NAME = 'askbot_csrf'
+ #enter domain name here - e.g. example.com
+-- 
+1.7.2.1
+
