@@ -1,0 +1,74 @@
+From 17888870fbd37a7110b96b6403a67ed2f2c9a8a6 Mon Sep 17 00:00:00 2001
+From: Anshu Prateek <anshprat@fedoraproject.org>
+Date: Fri, 1 Nov 2013 09:04:11 +0000
+Subject: [PATCH 1/2] Fedora build patch-1
+
+---
+ askbot/__init__.py |   19 ++++++++-----------
+ 1 files changed, 8 insertions(+), 11 deletions(-)
+
+diff --git a/askbot/__init__.py b/askbot/__init__.py
+index 19c3953f035cbd255276f76eb57a875a23253246..d07fc6a330fe93f9c3e4fc77d60a97eab0d5c088 100644
+--- a/askbot/__init__.py
++++ b/askbot/__init__.py
+@@ -12,30 +12,30 @@ VERSION = (0, 7, 48)
+ #keys are module names used by python imports,
+ #values - the package qualifier to use for pip
+ REQUIREMENTS = {
+-    'akismet': 'akismet==0.2.0',
+-    'django': 'django==1.4.8',
+-    'jinja2': 'Jinja2==2.7.2',
+-    'coffin': 'Coffin==0.3.8',
+-    'south': 'South==0.8.4',
+-    'oauth2': 'oauth2==1.5.211',
+-    'markdown2': 'markdown2==2.2.0',
+-    'html5lib': 'html5lib==0.90',
+-    'keyedcache': 'django-keyedcache==1.4-6',
+-    'threaded_multihost': 'django-threaded-multihost==1.4-1',
+-    'robots': 'django-robots==1.0',
+-    'sanction': 'sanction==0.4.1',
+-    'unidecode': 'unidecode==0.04.14',
+-    'django_countries': 'django-countries==1.0.5',
+-    'djcelery': 'django-celery==2.2.7',
+-    'djkombu': 'django-kombu==0.9.2',
+-    'followit': 'django-followit==0.0.3',
+-    'recaptcha_works': 'django-recaptcha-works==0.3.4',
+-    'openid': 'python-openid==2.2.5',
+-    'pystache': 'pystache==0.3.1',
+-    'pytz': 'pytz==2013.9',
+-    'tinymce': 'django-tinymce==1.5.2',
+-    'longerusername': 'longerusername==0.4',
+-    'bs4': 'beautifulsoup4==4.3.2'
++    'akismet': 'akismet',
++    'django': 'django',
++    'jinja2': 'Jinja2',
++    'coffin': 'Coffin',
++    'south': 'South',
++    'oauth2': 'oauth2',
++    'markdown2': 'markdown2',
++    'html5lib': 'html5lib',
++    'keyedcache': 'django-keyedcache',
++    'threaded_multihost': 'django-threaded-multihost',
++    'robots': 'django-robots',
++    'sanction': 'sanction',
++    'unidecode': 'unidecode',
++    'django_countries': 'django-countries',
++    'djcelery': 'django-celery',
++    'djkombu': 'django-kombu',
++    'followit': 'django-followit',
++    'recaptcha_works': 'django-recaptcha-works',
++    'openid': 'python-openid',
++    'pystache': 'pystache',
++    'pytz': 'pytz',
++    'tinymce': 'django-tinymce',
++    'longerusername': 'longerusername',
++    'bs4': 'beautifulsoup4'
+ }
+ 
+ if platform.system() != 'Windows':
+ 
+ #necessary for interoperability of django and coffin
+ try:
+-- 
+1.7.2.1
+

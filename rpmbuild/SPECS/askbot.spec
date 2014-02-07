@@ -2,7 +2,7 @@
 
 Name:           askbot48
 Version:        0.7.48.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
 License:        GPLv3+
@@ -15,13 +15,16 @@ Source4:        README.fedora
 
 Patch0:         askbot-remove-test-skins.patch
 Patch1:         askbot-pystache-templatespec.patch
-Patch2:         askbot-upfile-deploy-path.patch
-Patch3:         askbot-celery-import.patch
-Patch4:         askbot-remove-celery.patch
-Patch5:         askbot-remove-celery-mustache.patch
+Patch2:         askbot-django-celery-version.patch
+Patch3:         askbot-upfile-deploy-path.patch
+Patch4:         askbot-celery-import.patch
+Patch5:         askbot-remove-celery.patch
+Patch6:         askbot-remove-celery-mustache.patch
 
 BuildArch:      noarch
 BuildRequires:  python-setuptools python-devel gettext tinymce
+
+Conflicts:      askbot
 
 %if 0%{?rhel}
 Requires:       Django
@@ -116,10 +119,11 @@ Features:
 %patch1 -p1 -b .stache
 %endif
 
-%patch2 -p1 -b .pathpy 
-%patch3 -p1 -b .modelinitpy 
-%patch4 -p1 -b .set
-%patch5 -p1 -b .setmustache
+%patch2 -p1 -b .initpy
+%patch3 -p1 -b .pathpy
+%patch4 -p1 -b .modelinitpy
+%patch5 -p1 -b .set
+%patch6 -p1 -b .setmustache
 
 # remove empty files
 rm -rf %{name}/doc/build/html/.buildinfo
