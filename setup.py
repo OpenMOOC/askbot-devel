@@ -1,7 +1,6 @@
 import ez_setup
 ez_setup.use_setuptools()
 from setuptools import setup, find_packages
-import sys
 
 #NOTE: if you want to develop askbot
 #you might want to install django-debug-toolbar as well
@@ -10,7 +9,7 @@ import askbot
 
 setup(
     name = "askbot",
-    version = askbot.get_version(),#remember to manually set this correctly
+    version = '%s.1' % askbot.get_version(),#remember to manually set this correctly
     description = 'Question and Answer forum, like StackOverflow, written in python and Django',
     packages = find_packages(),
     author = 'Evgeny.Fadeev',

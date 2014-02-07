@@ -1,5 +1,7 @@
-Name:           askbot
-Version:        0.7.49
+%define src_name askbot
+
+Name:           askbot48
+Version:        0.7.48.1
 Release:        1%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
@@ -13,14 +15,13 @@ Source4:        README.fedora
 
 Patch0:         askbot-remove-test-skins.patch
 Patch1:         askbot-pystache-templatespec.patch
-Patch2:		askbot-django-celery-version.patch
-Patch3:		askbot-upfile-deploy-path.patch
-Patch4:		askbot-celery-import.patch
-Patch5:         askbot-remove-celery.patch
-Patch6:         askbot-remove-celery-mustache.patch
+Patch2:         askbot-upfile-deploy-path.patch
+Patch3:         askbot-celery-import.patch
+Patch4:         askbot-remove-celery.patch
+Patch5:         askbot-remove-celery-mustache.patch
 
 BuildArch:      noarch
-BuildRequires:  python-setuptools python-devel gettext
+BuildRequires:  python-setuptools python-devel gettext tinymce
 
 %if 0%{?rhel}
 Requires:       Django
@@ -115,18 +116,17 @@ Features:
 %patch1 -p1 -b .stache
 %endif
 
-%patch2 -p1 -b .initpy 
-%patch3 -p1 -b .pathpy 
-%patch4 -p1 -b .modelinitpy 
-%patch5 -p1 -b .set
-%patch6 -p1 -b .setmustache
+%patch2 -p1 -b .pathpy 
+%patch3 -p1 -b .modelinitpy 
+%patch4 -p1 -b .set
+%patch5 -p1 -b .setmustache
 
 # remove empty files
 rm -rf %{name}/doc/build/html/.buildinfo
 rm -rf %{name}/db
 
 # remove shebang
-sed -i -e '1d' %{name}/setup_templates/manage.py
+sed -i -e '1d' %{src_name}/setup_templates/manage.py
 
 %build
 %{__python} setup.py build
@@ -143,20 +143,20 @@ sed -i -e '1d' %{name}/setup_templates/manage.py
 install -d %{buildroot}/%{_sbindir}/
 install -p -m 755 %{SOURCE1} %{buildroot}%{_sbindir}/
 
-rm -rf  %{buildroot}/%{python_sitelib}/%{name}/setup_templates/{upfiles,log}
-rm -rf  %{buildroot}/%{python_sitelib}/%{name}/upfiles
+rm -rf  %{buildroot}/%{python_sitelib}/%{src_name}/setup_templates/{upfiles,log}
+rm -rf  %{buildroot}/%{python_sitelib}/%{src_name}/upfiles
 
 # remove bundled tinymce.
-rm -rf  %{buildroot}/%{python_sitelib}/%{name}/media/js/tinymce
-ln -s /usr/share/tinymce/jscripts/tiny_mce %{buildroot}/%{python_sitelib}/%{name}/media/js/tinymce
+rm -rf  %{buildroot}/%{python_sitelib}/%{src_name}/media/js/tinymce
+ln -s /usr/share/tinymce/jscripts/tiny_mce %{buildroot}/%{python_sitelib}/%{src_name}/media/js/tinymce
 
-install -p -m 644 %{SOURCE2} %{buildroot}/%{python_sitelib}/%{name}/setup_templates/settings.py
+install -p -m 644 %{SOURCE2} %{buildroot}/%{python_sitelib}/%{src_name}/setup_templates/settings.py
 install -d %{buildroot}/%{_sysconfdir}/%{name}/setup_templates
-cp -r %{buildroot}/%{python_sitelib}/%{name}/setup_templates/* \
+cp -r %{buildroot}/%{python_sitelib}/%{src_name}/setup_templates/* \
           %{buildroot}/%{_sysconfdir}/%{name}/setup_templates
 
 install -d %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config
-cp -r %{buildroot}/%{python_sitelib}/%{name}/setup_templates/* \
+cp -r %{buildroot}/%{python_sitelib}/%{src_name}/setup_templates/* \
           %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config
 cp %{SOURCE2} %{buildroot}/%{_sysconfdir}/%{name}/sites/ask/config/settings.py
 
@@ -183,7 +183,7 @@ chcon -R -t httpd_sys_rw_content_t %{_localstatedir}/cache/%{name}/
 #pushd %{_sysconfdir}/%{name}/sites/ask/config/
 #
 ## Gather up dynamic resources and put them in a static/ dir
-#mkdir -p %{python_sitelib}/%{name}/static/
+#mkdir -p %{python_sitelib}/%{src_name}/static/
 #echo "yes" | python manage.py collectstatic
 #
 ## Make db schema updates
@@ -194,10 +194,10 @@ chcon -R -t httpd_sys_rw_content_t %{_localstatedir}/cache/%{name}/
 #popd
 #
 ## Symlink the default skin into the skins directory
-#ln -s %{python_sitelib}/%{name}/static/default \
-#    %{python_sitelib}/%{name}/skins/default
-#ln -s %{python_sitelib}/%{name}/static/admin \
-#    %{python_sitelib}/%{name}/skins/admin
+#ln -s %{python_sitelib}/%{src_name}/static/default \
+#    %{python_sitelib}/%{src_name}/skins/default
+#ln -s %{python_sitelib}/%{src_name}/static/admin \
+#    %{python_sitelib}/%{src_name}/skins/admin
 
 # Set perm mask for httpd
 chown -R apache:apache %{_localstatedir}/log/%{name}/
@@ -222,42 +222,41 @@ chown -R apache:apache %{_localstatedir}/cache/%{name}/
 %attr(-,apache,apache) %{_localstatedir}/log/%{name}/
 %attr(-,apache,apache) %{_localstatedir}/cache/%{name}/
 %attr(-,apache,apache) %{_sharedstatedir}/%{name}/
-%dir %{python_sitelib}/%{name}/
-%dir %{python_sitelib}/%{name}/locale/
-%{python_sitelib}/%{name}/doc
-%{python_sitelib}/%{name}/*.py*
-%{python_sitelib}/%{name}/bin/
-%{python_sitelib}/%{name}/conf/
-%{python_sitelib}/%{name}/const/
-%{python_sitelib}/%{name}/cron
-%{python_sitelib}/%{name}/deployment/
-%{python_sitelib}/%{name}/shims/
-%{python_sitelib}/%{name}/skins/
-%{python_sitelib}/%{name}/templatetags/
-%{python_sitelib}/%{name}/tests/
-%{python_sitelib}/%{name}/utils/
-%{python_sitelib}/%{name}/views/
-%{python_sitelib}/%{name}/setup_templates/
-%{python_sitelib}/%{name}/migrations/
-%{python_sitelib}/%{name}/models/
-%{python_sitelib}/%{name}/management/
-%dir %{python_sitelib}/%{name}/deps/
-%{python_sitelib}/%{name}/deps/*.py*
-%{python_sitelib}/%{name}/deps/README
-%{python_sitelib}/%{name}/deps/django_authopenid/
-%{python_sitelib}/%{name}/deps/livesettings/
-%{python_sitelib}/%{name}/deps/group_messaging/
-%{python_sitelib}/%{name}/importers/
-%{python_sitelib}/%{name}/middleware/
-%{python_sitelib}/%{name}/migrations_api/
-%{python_sitelib}/%{name}/patches/
-%{python_sitelib}/%{name}/search/
-%{python_sitelib}/%{name}/user_messages/
-%{python_sitelib}/%{name}/mail
-%{python_sitelib}/%{name}/media
-%{python_sitelib}/%{name}/templates
+%dir %{python_sitelib}/%{src_name}/
+%dir %{python_sitelib}/%{src_name}/locale/
+%{python_sitelib}/%{src_name}/doc
+%{python_sitelib}/%{src_name}/*.py*
+%{python_sitelib}/%{src_name}/bin/
+%{python_sitelib}/%{src_name}/conf/
+%{python_sitelib}/%{src_name}/const/
+%{python_sitelib}/%{src_name}/cron
+%{python_sitelib}/%{src_name}/deployment/
+%{python_sitelib}/%{src_name}/shims/
+%{python_sitelib}/%{src_name}/skins/
+%{python_sitelib}/%{src_name}/templatetags/
+%{python_sitelib}/%{src_name}/tests/
+%{python_sitelib}/%{src_name}/utils/
+%{python_sitelib}/%{src_name}/views/
+%{python_sitelib}/%{src_name}/setup_templates/
+%{python_sitelib}/%{src_name}/migrations/
+%{python_sitelib}/%{src_name}/models/
+%{python_sitelib}/%{src_name}/management/
+%dir %{python_sitelib}/%{src_name}/deps/
+%{python_sitelib}/%{src_name}/deps/*.py*
+%{python_sitelib}/%{src_name}/deps/README
+%{python_sitelib}/%{src_name}/deps/django_authopenid/
+%{python_sitelib}/%{src_name}/deps/livesettings/
+%{python_sitelib}/%{src_name}/deps/group_messaging/
+%{python_sitelib}/%{src_name}/importers/
+%{python_sitelib}/%{src_name}/middleware/
+%{python_sitelib}/%{src_name}/migrations_api/
+%{python_sitelib}/%{src_name}/patches/
+%{python_sitelib}/%{src_name}/search/
+%{python_sitelib}/%{src_name}/user_messages/
+%{python_sitelib}/%{src_name}/mail
+%{python_sitelib}/%{src_name}/media
+%{python_sitelib}/%{src_name}/templates
 %{python_sitelib}/askbot*.egg-info
-%{python_sitelib}/custom_settings/
 
 
 %changelog
