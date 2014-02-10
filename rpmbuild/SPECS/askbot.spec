@@ -2,7 +2,7 @@
 
 Name:           askbot48
 Version:        0.7.48.1
-Release:        2%{?dist}
+Release:        5%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
 License:        GPLv3+
@@ -32,7 +32,7 @@ Requires:       Django-south
 Requires:       django-keyedcache
 Requires:       django-robots
 Requires:       django-countries
-Requires:       django-kombu
+Requires:       django-kombu >= 2.5.12-2
 Requires:       django-threaded-multihost
 Requires:       django-recaptcha-works
 Requires:       django-picklefield
@@ -46,7 +46,7 @@ Requires:       python-django-south
 Requires:       python-django-keyedcache
 Requires:       python-django-robots
 Requires:       python-django-countries
-Requires:       python-django-kombu
+Requires:       python-django-kombu  >= 2.5.12-2
 Requires:       python-django-threaded-multihost
 Requires:       python-django-recaptcha-works
 Requires:       python-django-picklefield
@@ -59,7 +59,7 @@ Requires:       python-django-avatar
 Requires:       python-django-tinymce
 Requires:       python-django-longerusername
 Requires:       python-django-compressor
-Requires:       python-dateutil
+Requires:       python-dateutil15
 
 Requires:       python-billiard
 Requires:       python-html5lib
@@ -83,7 +83,7 @@ Requires:       python-sanction
 Requires:       python-chardet
 Requires:       python-nose
 Requires:       python-daemon
-#Requires:       python-lamson
+Requires:       python-lamson
 
 # Database backend -- Not required; we used sqlite out of the box
 #Requires:       MySQL-python
