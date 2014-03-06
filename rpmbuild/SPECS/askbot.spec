@@ -2,7 +2,7 @@
 
 Name:           askbot48
 Version:        0.7.48.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
 License:        GPLv3+
@@ -32,7 +32,8 @@ Requires:       Django-south
 Requires:       django-keyedcache
 Requires:       django-robots
 Requires:       django-countries
-Requires:       django-kombu >= 2.5.12-2
+Requires:       django-kombu
+Requires:       python-kombu >= 2.5.12-4
 Requires:       django-threaded-multihost
 Requires:       django-recaptcha-works
 Requires:       django-picklefield
@@ -46,7 +47,8 @@ Requires:       python-django-south
 Requires:       python-django-keyedcache
 Requires:       python-django-robots
 Requires:       python-django-countries
-Requires:       python-django-kombu  >= 2.5.12-2
+Requires:       python-django-kombu
+Requires:       python-kombu >= 2.5.12-4
 Requires:       python-django-threaded-multihost
 Requires:       python-django-recaptcha-works
 Requires:       python-django-picklefield
