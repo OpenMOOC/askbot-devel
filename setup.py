@@ -9,7 +9,7 @@ import askbot
 
 setup(
     name = "askbot",
-    version = '%s.1' % askbot.get_version(),#remember to manually set this correctly
+    version = '%s.2' % askbot.get_version(),#remember to manually set this correctly
     description = 'Question and Answer forum, like StackOverflow, written in python and Django',
     packages = find_packages(),
     author = 'Evgeny.Fadeev',
