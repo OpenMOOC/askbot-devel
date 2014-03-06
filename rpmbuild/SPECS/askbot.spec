@@ -1,8 +1,8 @@
 %define src_name askbot
 
 Name:           askbot48
-Version:        0.7.48.1
-Release:        6%{?dist}
+Version:        0.7.48.2
+Release:        1%{?dist}
 Summary:        Question and Answer forum
 Group:          Applications/Publishing
 License:        GPLv3+
