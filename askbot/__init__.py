@@ -16,7 +16,7 @@ REQUIREMENTS = {
     'django': 'django==1.4.8',
     'jinja2': 'Jinja2==2.7.2',
     'coffin': 'Coffin==0.3.8',
-    'south': 'South==0.8.4',
+    'south': 'South==0.7.5',
     'oauth2': 'oauth2==1.5.211',
     'markdown2': 'markdown2==2.2.0',
     'html5lib': 'html5lib==0.90',

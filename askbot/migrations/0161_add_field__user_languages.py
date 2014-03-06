@@ -1,20 +1,32 @@
 # -*- coding: utf-8 -*-
+
+import sys
 import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
 
 
+RED_COLOR = '\033[91m'
+END_COLOR = '\033[0m'
+
+
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding field 'Thread.language_code'
+        sys.stderr.write(RED_COLOR + '\n\nDisabled the 0161 migration. The languages field was created with the syncdb command.\n\n' + END_COLOR)
+        sys.stderr.close()
+        return
         db.add_column('auth_user', 'languages',
                       self.gf('django.db.models.fields.CharField')(default='en', max_length=128),
                       keep_default=False)
 
     def backwards(self, orm):
         # Deleting field 'Thread.junk'
+        sys.stderr.write(RED_COLOR + '\n\nDisabled the 0161 migration. The languages field was created with the syncdb command.\n\n' + END_COLOR)
+        sys.stderr.close()
+        return
         db.delete_column('auth_user', 'languages')
 
     models = {
